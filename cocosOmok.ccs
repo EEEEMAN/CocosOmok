@@ -1,0 +1,73 @@
+<Solution>
+  <PropertyGroup Name="cocosOmok" Version="2.1.5.0" Type="CocosStudio" />
+  <SolutionFolder>
+    <Group ctype="ResourceGroup">
+      <RootFolder Name=".">
+        <Folder Name="Resources">
+          <Folder Name="fonts">
+            <File Name="Marker Felt.ttf" />
+          </Folder>
+          <Image Name="back.png" />
+          <Image Name="back_sel.png" />
+          <Image Name="black.png" />
+          <Image Name="CloseNormal.png" />
+          <Image Name="CloseSelected.png" />
+          <Image Name="cursor.png" />
+          <Image Name="HelloWorld.png" />
+          <Image Name="menu_1p.png" />
+          <Image Name="menu_1p_sel.png" />
+          <Image Name="menu_2p.png" />
+          <Image Name="menu_2p_sel.png" />
+          <Image Name="menu_exit.png" />
+          <Image Name="menu_exit_sel.png" />
+          <Image Name="omok.png" />
+          <Image Name="p1win.png" />
+          <Image Name="p2win.png" />
+          <Image Name="stage.png" />
+          <Image Name="statusbar.png" />
+          <Image Name="title.png" />
+          <Image Name="title_cursor.png" />
+          <Image Name="white.png" />
+          <Image Name="win_stone.png" />
+          <Image Name="star.png" />
+          <Image Name="logo.png" />
+          <Image Name="sea.jpg" />
+          <Image Name="invisivle.png" />
+          <Image Name="omok_big.png" />
+          <Image Name="stage_15.png" />
+          <Image Name="think.png" />
+          <Image Name="button_sel.png" />
+          <Image Name="button.png" />
+          <Image Name="fence_bak.png" />
+          <Image Name="fence_ld.png" />
+          <Image Name="fence_lu.png" />
+          <Image Name="fence_mini.png" />
+          <Image Name="fence_rd.png" />
+          <Image Name="fence_ru.png" />
+          <Image Name="menu_option.png" />
+          <Image Name="menu_option_sel.png" />
+          <Image Name="stone_arr.png" />
+          <Image Name="background.png" />
+          <Image Name="progressBtn.png" />
+          <Image Name="progressInner.png" />
+        </Folder>
+        <Project Name="OmokLayer.csd" Type="Layer" />
+        <Project Name="StatusBar.csd" Type="Layer" />
+        <Project Name="P1WinAnim.csd" Type="Scene" />
+        <Project Name="Title.csd" Type="Scene" />
+        <Project Name="TitleArr.csd" Type="Node" />
+        <Project Name="OmokLayer_15.csd" Type="Layer" />
+        <Project Name="StageSelect.csd" Type="Scene" />
+        <Project Name="Fence.csd" Type="Node" />
+        <Project Name="Fence2.csd" Type="Node" />
+        <Project Name="Fence3.csd" Type="Node" />
+        <Project Name="MessageBox.csd" Type="Node" />
+        <Project Name="Option.csd" Type="Layer" />
+        <Project Name="LastStone.csd" Type="Node" />
+        <Project Name="HelpRenjuRule.csd" Type="Node" />
+        <Project Name="SelectStone.csd" Type="Layer" />
+        <Project Name="SelectStone2P.csd" Type="Layer" />
+      </RootFolder>
+    </Group>
+  </SolutionFolder>
+</Solution>

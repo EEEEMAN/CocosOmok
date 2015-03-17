@@ -1,0 +1,209 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="win32">
+      <UniqueIdentifier>{84a8ebd7-7cf0-47f6-b75e-d441df67da40}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="resource">
+      <UniqueIdentifier>{715254bc-d70b-4ec5-bf29-467dd3ace079}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src">
+      <UniqueIdentifier>{bb6c862e-70e9-49d9-81b7-3829a6f50471}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\Character">
+      <UniqueIdentifier>{efccafce-7573-4640-94a3-c2ad9baee27e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\omok">
+      <UniqueIdentifier>{9d336623-920d-425f-8691-e165bd34547c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\Stone">
+      <UniqueIdentifier>{cecdd7e9-f73c-4c60-bc79-feea9ee7e22a}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="main.cpp">
+      <Filter>win32</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\AppDelegate.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\OmokScene.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\OmokTitleScene.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\StageSelectScene.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\Character\CpuChar.cpp">
+      <Filter>src\Character</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\Character\CpuOmok.cpp">
+      <Filter>src\Character</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\omok\GAction.cpp">
+      <Filter>src\omok</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\omok\GNode.cpp">
+      <Filter>src\omok</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\Character\CpuMyeolchi.cpp">
+      <Filter>src\Character</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\Character\CpuOri.cpp">
+      <Filter>src\Character</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\Character\CpuJanggab.cpp">
+      <Filter>src\Character</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\GameManager.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\OmokOption.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\AdmobHelper.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\StoneSelect.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\Stone\Stone_Black.cpp">
+      <Filter>src\Stone</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\Stone\Stone_Cross.cpp">
+      <Filter>src\Stone</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\Character\CpuKetchup.cpp">
+      <Filter>src\Character</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\Stone\Stone_Fish.cpp">
+      <Filter>src\Stone</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\Stone\Stone_Ori.cpp">
+      <Filter>src\Stone</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\Stone\Stone_Sock.cpp">
+      <Filter>src\Stone</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\Stone\Stone.cpp">
+      <Filter>src\Stone</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\Stone\Stone_Ketchup.cpp">
+      <Filter>src\Stone</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\VS2PMenu.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\Character\CpuOjing.cpp">
+      <Filter>src\Character</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\Stone\Stone_Ojing.cpp">
+      <Filter>src\Stone</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\Character\CpuCrab.cpp">
+      <Filter>src\Character</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\Stone\Stone_Crab.cpp">
+      <Filter>src\Stone</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="main.h">
+      <Filter>win32</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\AppDelegate.h">
+      <Filter>src</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\OmokScene.h">
+      <Filter>src</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\OmokTitleScene.h">
+      <Filter>src</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\StageSelectScene.h">
+      <Filter>src</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\Character\CpuChar.h">
+      <Filter>src\Character</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\Character\CpuOmok.h">
+      <Filter>src\Character</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\omok\GAction.h">
+      <Filter>src\omok</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\omok\GNode.h">
+      <Filter>src\omok</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\Character\CpuMyeolchi.h">
+      <Filter>src\Character</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\Character\CpuOri.h">
+      <Filter>src\Character</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\Character\CpuJanggab.h">
+      <Filter>src\Character</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\GameManager.h">
+      <Filter>src</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\OmokOption.h">
+      <Filter>src</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\AdmobHelper.h">
+      <Filter>src</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\StoneSelect.h">
+      <Filter>src</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\Stone\Stone.h">
+      <Filter>src\Stone</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\Stone\Stone_Black.h">
+      <Filter>src\Stone</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\Stone\Stone_Cross.h">
+      <Filter>src\Stone</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\OmokDefine.h">
+      <Filter>src</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\Character\CpuKetchup.h">
+      <Filter>src\Character</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\Stone\Stone_Fish.h">
+      <Filter>src\Stone</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\Stone\Stone_Ori.h">
+      <Filter>src\Stone</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\Stone\Stone_Sock.h">
+      <Filter>src\Stone</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\Stone\Stone_Ketchup.h">
+      <Filter>src\Stone</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\VS2PMenu.h">
+      <Filter>src</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\Character\CpuOjing.h">
+      <Filter>src\Character</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\Stone\Stone_Ojing.h">
+      <Filter>src\Stone</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\Character\CpuCrab.h">
+      <Filter>src\Character</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\Stone\Stone_Crab.h">
+      <Filter>src\Stone</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="game.rc">
+      <Filter>resource</Filter>
+    </ResourceCompile>
+  </ItemGroup>
+</Project>
