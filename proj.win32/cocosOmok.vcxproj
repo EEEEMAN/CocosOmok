@@ -141,6 +141,7 @@ xcopy /Y /Q "$(EngineRoot)external\websockets\prebuilt\win32\*.*" "$(OutDir)"</C
     <ClCompile Include="..\Classes\AppDelegate.cpp" />
     <ClCompile Include="..\Classes\Character\CpuChar.cpp" />
     <ClCompile Include="..\Classes\Character\CpuCrab.cpp" />
+    <ClCompile Include="..\Classes\Character\CpuEnemy.cpp" />
     <ClCompile Include="..\Classes\Character\CpuJanggab.cpp" />
     <ClCompile Include="..\Classes\Character\CpuKetchup.cpp" />
     <ClCompile Include="..\Classes\Character\CpuMyeolchi.cpp" />
@@ -172,6 +173,7 @@ xcopy /Y /Q "$(EngineRoot)external\websockets\prebuilt\win32\*.*" "$(OutDir)"</C
     <ClInclude Include="..\Classes\AppDelegate.h" />
     <ClInclude Include="..\Classes\Character\CpuChar.h" />
     <ClInclude Include="..\Classes\Character\CpuCrab.h" />
+    <ClInclude Include="..\Classes\Character\CpuEnemy.h" />
     <ClInclude Include="..\Classes\Character\CpuJanggab.h" />
     <ClInclude Include="..\Classes\Character\CpuKetchup.h" />
     <ClInclude Include="..\Classes\Character\CpuMyeolchi.h" />

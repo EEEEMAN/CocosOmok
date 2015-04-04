@@ -24,6 +24,7 @@ GNode::GNode(GNode *T)
 			this->state[y][x] = T->state[y][x];
 		}
 	}
+	this->actionList = T->actionList;
 }
 
 bool GNode::isTerminal(){
@@ -339,6 +340,28 @@ void GNode::doAction(GAction action){
 	stoneNum++;
 	didAction.x = action.x;
 	didAction.y = action.y;
+
+	//actionList에 새로운 수 추가
+	for (int y = action.y - 1; y <= action.y + 1; y++) {
+		for (int x = action.x - 1; x <= action.x + 1; x++) {
+			if (x >= 0 && x < ROW && y >= 0 && y < ROW) {
+				if (state[y][x] == GState::S_EMPTY) {
+					if (!(action.y == y && action.x == x) && !searchAction(x, y)){
+						actionList.push_back(GAction(x, y));
+					}
+				}
+			}
+		}
+	}
+	//기존 actionList에 있던 액션 삭제
+	for (std::vector<GAction>::iterator it = actionList.begin(); it != actionList.end();){
+		if ((*it).isEqual(action)){
+			it = actionList.erase(it);
+		}
+		else{
+			it++;
+		}
+	}
 }
 
 int GNode::getTurn() const{
@@ -441,4 +464,22 @@ std::vector<GAction> GNode::getTerminalAction() const{
 
 	ans.clear();
 	return ans;
+}
+
+bool GNode::searchAction(GAction action) const {
+	for (int i = 0; i < actionList.size(); i++){
+		if (actionList.at(i).isEqual(action)){
+			return true;
+		}
+	}
+	return false;
+}
+
+bool GNode::searchAction(int x, int y) const {
+	for (int i = 0; i < actionList.size(); i++){
+		if (actionList.at(i).isEqual(x, y)){
+			return true;
+		}
+	}
+	return false;
 }

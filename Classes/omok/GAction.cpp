@@ -10,8 +10,13 @@ GAction::GAction(int x, int y)
 	this->y = y;
 }
 
-bool GAction::isEqual(GAction act){
+bool GAction::isEqual(GAction act) const{
 	if (this->x == act.x && this->y == act.y) return true;
+	else return false;
+}
+
+bool GAction::isEqual(int x, int y) const{
+	if (this->x == x && this->y == y) return true;
 	else return false;
 }
 

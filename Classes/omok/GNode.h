@@ -16,6 +16,7 @@ class GNode
 {
 public:
 	GState state[ROW][ROW]; //state[y][x]
+	std::vector<GAction> actionList; //cpu가 둘 수 있는 수 집합
 private:
 	int stoneNum; //놓여있는 총 돌의 수
 	GAction didAction; //이 상태가 되기 위해 놓은 수
@@ -31,6 +32,8 @@ public:
 	int getTurn() const; //경과 턴을 반환
 	GAction getAction() const; //마지막 액션(didAction)을 반환
 	std::vector<GAction> getTerminalAction() const; //종료상태로 만든 5알을 vector에 담아서 반환
+	bool searchAction(GAction action) const; //action이 이미 actionList에 있으면 true
+	bool searchAction(int x, int y) const;
 private:
 	char stateToChar(int x, int y); //x,y좌표에 있는 상태를 char로 변환하여 반환
 	bool search33Pattern(char* str); //문자열로 변환한 상태에서 쌍삼이 될만한 패턴을 찾는다.

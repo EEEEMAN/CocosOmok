@@ -18,6 +18,7 @@
 #include "Character\CpuKetchup.h"
 #include "Character\CpuOjing.h"
 #include "Character\CpuCrab.h"
+#include "Character\CpuEnemy.h"
 
 #include <vector>
 

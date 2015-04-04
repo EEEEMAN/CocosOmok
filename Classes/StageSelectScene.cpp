@@ -61,6 +61,7 @@ bool StageSelectScene::init()
 
 	//캐릭터 추가
 	auto gm = &GameManager::getInstance();
+	addCharacter(new CpuEnemy());
 	addCharacter(new CpuOjing());
 	if (gm->getWinCount(CharacterID::CHAR_OJING) > 0){
 		addCharacter(new CpuCrab());
