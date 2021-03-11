@@ -60,7 +60,7 @@ public:
      */
     virtual void onExit() override;
     virtual void update(float delta) override;
-    virtual bool isEnabled() const override;
+    virtual bool isEnabled() const;
     virtual void setEnabled(bool b) override;
     
     static ComController* create(void);

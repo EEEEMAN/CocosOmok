@@ -1,7 +1,8 @@
 /****************************************************************************
 Copyright (c) 2010      ForzeField Studios S.L. http://forzefield.com
 Copyright (c) 2010-2012 cocos2d-x.org
-Copyright (c) 2013-2014 Chukong Technologies Inc.
+Copyright (c) 2013-2016 Chukong Technologies Inc.
+Copyright (c) 2017-2018 Xiamen Yaji Software Co., Ltd.
 
 http://www.cocos2d-x.org
 
@@ -23,8 +24,10 @@ LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 THE SOFTWARE.
 ****************************************************************************/
+
 #ifndef __CCARRAY_H__
 #define __CCARRAY_H__
+/// @cond DO_NOT_SHOW
 
 #define CC_USE_ARRAY_VECTOR 0
 
@@ -500,7 +503,7 @@ public:
      * @js NA
      * @lua NA
      */
-    virtual __Array* clone() const;
+    virtual __Array* clone() const override;
 
     // ------------------------------------------
     // Iterators
@@ -556,4 +559,5 @@ public:
 
 NS_CC_END
 
+/// @endcond
 #endif // __CCARRAY_H__

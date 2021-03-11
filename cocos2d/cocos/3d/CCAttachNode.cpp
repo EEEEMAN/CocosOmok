@@ -1,5 +1,6 @@
 /****************************************************************************
- Copyright (c) 2014 Chukong Technologies Inc.
+ Copyright (c) 2014-2016 Chukong Technologies Inc.
+ Copyright (c) 2017-2018 Xiamen Yaji Software Co., Ltd.
 
  http://www.cocos2d-x.org
 
@@ -53,18 +54,30 @@ Mat4 AttachNode::getWorldToNodeTransform() const
     auto parent = getParent();
     if (parent)
     {
-        mat = parent->getWorldToNodeTransform() * _attachBone->getWorldMat() * getNodeToParentTransform();
+        mat = parent->getWorldToNodeTransform() * _attachBone->getWorldMat() * Node::getNodeToParentTransform();
     }
     else
     {
-        mat = _attachBone->getWorldMat() * getNodeToParentTransform();
+        mat = _attachBone->getWorldMat() * Node::getNodeToParentTransform();
     }
     return mat;
 }
 
-void AttachNode::visit(Renderer *renderer, const Mat4& parentTransform, uint32_t parentFlags)
+Mat4 AttachNode::getNodeToWorldTransform() const
 {
-    Node::visit(renderer, parentTransform * _attachBone->getWorldMat(), Node::FLAGS_DIRTY_MASK);
+    return Node::getNodeToWorldTransform();
+}
+
+const Mat4& AttachNode::getNodeToParentTransform() const
+{
+    Node::getNodeToParentTransform();
+    _transformToParent = _attachBone->getWorldMat() * _transform;
+    return _transformToParent;
+}
+
+void AttachNode::visit(Renderer *renderer, const Mat4& parentTransform, uint32_t /*parentFlags*/)
+{
+    Node::visit(renderer, parentTransform, Node::FLAGS_DIRTY_MASK);
 }
 NS_CC_END
 

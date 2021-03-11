@@ -1,6 +1,7 @@
 /****************************************************************************
 Copyright (c) 2010-2012 cocos2d-x.org
-Copyright (c) 2013-2014 Chukong Technologies Inc.
+Copyright (c) 2013-2016 Chukong Technologies Inc.
+Copyright (c) 2017-2018 Xiamen Yaji Software Co., Ltd.
 
 http://www.cocos2d-x.org
 
@@ -25,6 +26,7 @@ THE SOFTWARE.
 
 #ifndef __SUPPORT_DATA_SUPPORT_TGALIB_H__
 #define __SUPPORT_DATA_SUPPORT_TGALIB_H__
+/// @cond DO_NOT_SHOW
 
 namespace cocos2d {
 
@@ -73,4 +75,5 @@ void tgaDestroy(tImageTGA *info);
 
 }//namespace cocos2d 
 
+/// @endcond
 #endif // __SUPPORT_DATA_SUPPORT_TGALIB_H__

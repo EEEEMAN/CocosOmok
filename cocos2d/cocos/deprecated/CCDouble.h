@@ -1,5 +1,6 @@
 /****************************************************************************
- Copyright (c) 2013-2014 Chukong Technologies
+ Copyright (c) 2013-2017 Chukong Technologies
+ Copyright (c) 2017-2018 Xiamen Yaji Software Co., Ltd.
  
  http://www.cocos2d-x.org
  
@@ -24,6 +25,7 @@
 
 #ifndef __CCDOUBLE_H__
 #define __CCDOUBLE_H__
+/// @cond DO_NOT_SHOW
 
 #include "base/CCRef.h"
 #include "base/CCDataVisitor.h"
@@ -44,7 +46,7 @@ public:
 
     static __Double* create(double v)
     {
-        __Double* pRet = new __Double(v);
+        __Double* pRet = new (std::nothrow) __Double(v);
         if (pRet)
         {
             pRet->autorelease();
@@ -55,7 +57,7 @@ public:
     /* override functions */
     virtual void acceptVisitor(DataVisitor &visitor) { visitor.visit(this); }
     
-    __Double* clone() const
+    virtual __Double* clone() const override
     {
         return __Double::create(_value);
     }
@@ -68,4 +70,5 @@ private:
 
 NS_CC_END
 
+/// @endcond
 #endif /* __CCDOUBLE_H__ */

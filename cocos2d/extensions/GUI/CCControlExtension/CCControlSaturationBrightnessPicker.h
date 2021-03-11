@@ -8,6 +8,8 @@
  * Modified by Yannick Loriot.
  * http://yannickloriot.com
  * 
+ * Copyright (c) 2017-2018 Xiamen Yaji Software Co., Ltd.
+ * 
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
  * in the Software without restriction, including without limitation the rights
@@ -78,7 +80,7 @@ public:
 
     static ControlSaturationBrightnessPicker* create(Node* target, Vec2 pos);
 
-    virtual void setEnabled(bool enabled);
+    virtual void setEnabled(bool enabled) override;
     /**
      * @js NA
      * @lua NA
@@ -94,8 +96,8 @@ protected:
     void updateSliderPosition(Vec2 location);
     bool checkSliderPosition(Vec2 location);
 
-    virtual bool onTouchBegan(Touch* touch, Event* pEvent);
-    virtual void onTouchMoved(Touch *pTouch, Event *pEvent);
+    virtual bool onTouchBegan(Touch* touch, Event* pEvent) override;
+    virtual void onTouchMoved(Touch *pTouch, Event *pEvent) override;
 };
 
 // end of GUI group

@@ -1,5 +1,6 @@
 /****************************************************************************
- Copyright (c) 2013-2014 Chukong Technologies Inc.
+ Copyright (c) 2013-2016 Chukong Technologies Inc.
+ Copyright (c) 2017-2018 Xiamen Yaji Software Co., Ltd.
 
  http://www.cocos2d-x.org
 
@@ -23,31 +24,44 @@
 
  ****************************************************************************/
 
+#ifndef __cocos2d_libs__CCMouseEventListener__
+#define __cocos2d_libs__CCMouseEventListener__
+
 #include "base/CCEventListener.h"
 #include "base/CCEventMouse.h"
 
-#ifndef __cocos2d_libs__CCMouseEventListener__
-#define __cocos2d_libs__CCMouseEventListener__
+/**
+ * @addtogroup base
+ * @{
+ */
 
 NS_CC_BEGIN
 
 class Event;
 
+/** @class EventListenerMouse
+ * @brief Mouse event listener.
+ * @js cc._EventListenerMouse
+ */
 class CC_DLL EventListenerMouse : public EventListener
 {
 public:
     static const std::string LISTENER_ID;
     
+    /** Create a mouse event listener.
+     *
+     * @return An autoreleased EventListenerMouse object.
+     */
     static EventListenerMouse* create();
 
     /// Overrides
     virtual EventListenerMouse* clone() override;
     virtual bool checkAvailable() override;
 
-    std::function<void(Event* event)> onMouseDown;
-    std::function<void(Event* event)> onMouseUp;
-    std::function<void(Event* event)> onMouseMove;
-    std::function<void(Event* event)> onMouseScroll;
+    std::function<void(EventMouse* event)> onMouseDown;
+    std::function<void(EventMouse* event)> onMouseUp;
+    std::function<void(EventMouse* event)> onMouseMove;
+    std::function<void(EventMouse* event)> onMouseScroll;
 
 CC_CONSTRUCTOR_ACCESS:
     EventListenerMouse();
@@ -55,5 +69,8 @@ CC_CONSTRUCTOR_ACCESS:
 };
 
 NS_CC_END
+
+// end of base group
+/// @}
 
 #endif /* defined(__cocos2d_libs__CCMouseEventListener__) */

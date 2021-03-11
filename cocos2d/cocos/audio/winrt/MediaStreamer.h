@@ -2,6 +2,7 @@
 * cocos2d-x   http://www.cocos2d-x.org
 *
 * Copyright (c) 2010-2011 - cocos2d-x community
+* Copyright (c) 2017-2018 Xiamen Yaji Software Co., Ltd.
 * 
 * Portions Copyright (c) Microsoft Open Technologies, Inc.
 * All Rights Reserved
@@ -28,10 +29,13 @@ private:
     WAVEFORMATEX      m_waveFormat;
     uint32            m_maxStreamLengthInBytes;
     std::vector<byte> m_data;
-    UINT32            m_offset;
-	Platform::Array<byte>^ ReadData(
-    _In_ Platform::String^ filename
-    );
+    size_t            m_offset;
+    size_t            m_dataLen;
+    Platform::String^      m_filename;
+
+    Platform::Array<byte>^ ReadData(_In_ Platform::String^ filename);
+    Platform::Array<byte>^ ReadData(_In_ Platform::String^ filename, uint32 from, uint32 length);
+
 internal:
     Windows::Storage::StorageFolder^ m_location;
     Platform::String^ m_locationPath;
@@ -47,12 +51,13 @@ internal:
         return m_waveFormat;
     }
 
-    UINT32 GetMaxStreamLengthInBytes()
+    size_t GetMaxStreamLengthInBytes()
     {
-		return m_data.size();
+		return m_dataLen;
     }
 
-    void Initialize(_In_ const WCHAR* url); 
-    void ReadAll(uint8* buffer, uint32 maxBufferSize, uint32* bufferLength); 
+    void Initialize(_In_ const WCHAR* url, bool lazy = false); 
+    void ReadAll(uint8* buffer, uint32 maxBufferSize, uint32* bufferLength);
+    void ReadChunk(uint8* buffer, uint32 from, uint32 length, uint32* bytesRead);
     void Restart();
 };

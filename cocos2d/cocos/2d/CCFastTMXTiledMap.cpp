@@ -2,7 +2,8 @@
 Copyright (c) 2009-2010 Ricardo Quesada
 Copyright (c) 2010-2012 cocos2d-x.org
 Copyright (c) 2011      Zynga Inc.
-Copyright (c) 2013-2014 Chukong Technologies Inc.
+Copyright (c) 2013-2016 Chukong Technologies Inc.
+Copyright (c) 2017-2018 Xiamen Yaji Software Co., Ltd.
 
 http://www.cocos2d-x.org
 
@@ -26,7 +27,7 @@ THE SOFTWARE.
 ****************************************************************************/
 #include "2d/CCFastTMXTiledMap.h"
 #include "2d/CCFastTMXLayer.h"
-#include "deprecated/CCString.h"
+#include "base/ccUTF8.h"
 
 NS_CC_BEGIN
 namespace experimental {
@@ -101,6 +102,9 @@ TMXTiledMap::~TMXTiledMap()
 TMXLayer * TMXTiledMap::parseLayer(TMXLayerInfo *layerInfo, TMXMapInfo *mapInfo)
 {
     TMXTilesetInfo *tileset = tilesetForLayer(layerInfo, mapInfo);
+    if (tileset == nullptr)
+        return nullptr;
+    
     TMXLayer *layer = TMXLayer::create(tileset, layerInfo, mapInfo);
 
     // tell the layerinfo to release the ownership of the tiles map.
@@ -114,8 +118,8 @@ TMXTilesetInfo * TMXTiledMap::tilesetForLayer(TMXLayerInfo *layerInfo, TMXMapInf
 {
     Size size = layerInfo->_layerSize;
     auto& tilesets = mapInfo->getTilesets();
-    
-    for (auto iter = tilesets.crbegin(); iter != tilesets.crend(); ++iter)
+
+    for (auto iter = tilesets.crbegin(), iterCrend = tilesets.crend(); iter != iterCrend; ++iter)
     {
         TMXTilesetInfo* tilesetInfo = *iter;
         if (tilesetInfo)
@@ -124,8 +128,8 @@ TMXTilesetInfo * TMXTiledMap::tilesetForLayer(TMXLayerInfo *layerInfo, TMXMapInf
             {
                 for( int x=0; x < size.width; x++ )
                 {
-                    int pos = static_cast<int>(x + size.width * y);
-                    int gid = layerInfo->_tiles[ pos ];
+                    uint32_t pos = static_cast<uint32_t>(x + size.width * y);
+                    uint32_t gid = layerInfo->_tiles[ pos ];
                     
                     // gid are stored in little endian.
                     // if host is big endian, then swap
@@ -138,8 +142,11 @@ TMXTilesetInfo * TMXTiledMap::tilesetForLayer(TMXLayerInfo *layerInfo, TMXMapInf
                     {
                         // Optimization: quick return
                         // if the layer is invalid (more than 1 tileset per layer) an CCAssert will be thrown later
-                        if( (gid & kTMXFlippedMask) >= tilesetInfo->_firstGid )
+                        if( (gid & kTMXFlippedMask)
+                            >= static_cast<uint32_t>(tilesetInfo->_firstGid))
+                        {
                             return tilesetInfo;
+                        }
                     }
                 }
             }
@@ -170,6 +177,10 @@ void TMXTiledMap::buildWithMapInfo(TMXMapInfo* mapInfo)
         if (layerInfo->_visible)
         {
             TMXLayer *child = parseLayer(layerInfo, mapInfo);
+            if (child == nullptr) {
+                idx++;
+                continue;
+            }
             addChild(child, idx, idx);
             
             // update content size with the max size
@@ -211,10 +222,8 @@ TMXObjectGroup * TMXTiledMap::getObjectGroup(const std::string& groupName) const
 
     if (_objectGroups.size()>0)
     {
-        TMXObjectGroup* objectGroup = nullptr;
-        for (auto iter = _objectGroups.cbegin(); iter != _objectGroups.cend(); ++iter)
+        for (const auto& objectGroup : _objectGroups)
         {
-            objectGroup = *iter;
             if (objectGroup && objectGroup->getGroupName() == groupName)
             {
                 return objectGroup;
@@ -228,16 +237,18 @@ TMXObjectGroup * TMXTiledMap::getObjectGroup(const std::string& groupName) const
 
 Value TMXTiledMap::getProperty(const std::string& propertyName) const
 {
-    if (_properties.find(propertyName) != _properties.end())
-        return _properties.at(propertyName);
+    auto propsItr = _properties.find(propertyName);
+    if (propsItr != _properties.end())
+        return propsItr->second;
     
     return Value();
 }
 
 Value TMXTiledMap::getPropertiesForGID(int GID) const
 {
-    if (_tileProperties.find(GID) != _tileProperties.end())
-        return _tileProperties.at(GID);
+    auto propsItr = _tileProperties.find(GID);
+    if (propsItr != _tileProperties.end())
+        return propsItr->second;
     
     return Value();
 }

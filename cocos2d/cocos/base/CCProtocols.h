@@ -1,7 +1,8 @@
 /****************************************************************************
 Copyright (c) 2008-2010 Ricardo Quesada
 Copyright (c) 2010-2012 cocos2d-x.org
-Copyright (c) 2013-2014 Chukong Technologies Inc.
+Copyright (c) 2013-2016 Chukong Technologies Inc.
+Copyright (c) 2017-2018 Xiamen Yaji Software Co., Ltd.
 
 http://www.cocos2d-x.org
 
@@ -26,6 +27,7 @@ THE SOFTWARE.
 
 #ifndef __BASE_CCPROTOCOLS_H__
 #define __BASE_CCPROTOCOLS_H__
+/// @cond DO_NOT_SHOW
 
 #include <string>
 
@@ -102,7 +104,7 @@ public:
     
     /**
      * Changes the OpacityModifyRGB property.
-     * If thie property is set to true, then the rendered color will be affected by opacity.
+     * If this property is set to true, then the rendered color will be affected by opacity.
      * Normally, r = r * opacity/255, g = g * opacity/255, b = b * opacity/255.
      *
      * @param value If true, then the opacity will be applied as: glColor(R,G,B,opacity);
@@ -207,14 +209,14 @@ public:
     /**
      * Returns the currently used texture
      *
-     * @return  The texture that is currenlty being used.
+     * @return  The texture that is currently being used.
      * @js NA
      * @lua NA
      */
     virtual Texture2D* getTexture() const = 0;
 
     /**
-     * Sets a new texuture. It will be retained.
+     * Sets a new texture. It will be retained.
      *
      * @param   texture A valid Texture2D object, which will be applied to this sprite object.
      * @js NA
@@ -234,7 +236,7 @@ public:
     /**
      * Sets a new label using a string
      *
-     * @param label A null terminated string
+     * @param label The name of the new label.
      * @js NA
      * @lua NA
      */
@@ -266,6 +268,19 @@ public:
     virtual void updateProjection() = 0;
 };
 
+/**
+ * interface for playable items
+ */
+class CC_DLL PlayableProtocol
+{
+public:
+    virtual ~PlayableProtocol(){}
+    
+    virtual void start() = 0;
+    
+    virtual void stop() = 0;
+};
 NS_CC_END
 
+/// @endcond
 #endif // __BASE_CCPROTOCOLS_H__

@@ -1,5 +1,7 @@
 /**
  Copyright 2013 BlackBerry Inc.
+ Copyright (c) 2014-2017 Chukong Technologies
+ Copyright (c) 2017-2018 Xiamen Yaji Software Co., Ltd.
 
  Licensed under the Apache License, Version 2.0 (the "License");
  you may not use this file except in compliance with the License.
@@ -21,7 +23,13 @@
 #ifndef MATH_VEC3_H
 #define MATH_VEC3_H
 
+#include <cmath>
 #include "math/CCMathBase.h"
+
+/**
+ * @addtogroup base
+ * @{
+ */
 
 NS_CC_MATH_BEGIN
 
@@ -86,13 +94,6 @@ public:
     Vec3(const Vec3& p1, const Vec3& p2);
 
     /**
-     * Constructs a new vector that is a copy of the specified vector.
-     *
-     * @param copy The vector to copy.
-     */
-    Vec3(const Vec3& copy);
-
-    /**
      * Creates a new vector from an integer interpreted as an RGB value.
      * E.g. 0xff0000 represents red or the vector (1, 0, 0).
      *
@@ -103,23 +104,18 @@ public:
     static Vec3 fromColor(unsigned int color);
 
     /**
-     * Destructor.
-     */
-    ~Vec3();
-
-    /**
      * Indicates whether this vector contains all zeros.
      *
      * @return true if this vector contains all zeros, false otherwise.
      */
-    bool isZero() const;
+    inline bool isZero() const;
 
     /**
      * Indicates whether this vector contains all ones.
      *
      * @return true if this vector contains all ones, false otherwise.
      */
-    bool isOne() const;
+    inline bool isOne() const;
 
     /**
      * Returns the angle (in radians) between the specified vectors.
@@ -137,7 +133,17 @@ public:
      *
      * @param v The vector to add.
      */
-    void add(const Vec3& v);
+    inline void add(const Vec3& v);
+
+
+    /**
+    * Adds the elements of this vector to the specified values.
+    *
+    * @param xx The add x coordinate.
+    * @param yy The add y coordinate.
+    * @param zz The add z coordinate.
+    */
+    inline void add(float xx, float yy, float zz);
 
     /**
      * Adds the specified vectors and stores the result in dst.
@@ -235,7 +241,7 @@ public:
      * 
      * @see lengthSquared
      */
-    float length() const;
+    inline float length() const;
 
     /**
      * Returns the squared length of this vector.
@@ -249,17 +255,17 @@ public:
      * 
      * @see length
      */
-    float lengthSquared() const;
+    inline float lengthSquared() const;
 
     /**
      * Negates this vector.
      */
-    void negate();
+    inline void negate();
 
     /**
      * Normalizes this vector.
      *
-     * This method normalizes this Vect3 so that it is of
+     * This method normalizes this Vec3 so that it is of
      * unit length (in other words, the length of the vector
      * after calling this method will be 1.0f). If the vector
      * already has unit length or if the length of the vector
@@ -270,13 +276,7 @@ public:
     void normalize();
 
     /**
-     * Normalizes this vector and stores the result in dst.
-     *
-     * If the vector already has unit length or if the length
-     * of the vector is zero, this method simply copies the
-     * current vector into dst.
-     *
-     * @param dst The destination vector.
+     * Get the normalized vector.
      */
     Vec3 getNormalized() const;
 
@@ -285,7 +285,7 @@ public:
      *
      * @param scalar The scalar value.
      */
-    void scale(float scalar);
+    inline void scale(float scalar);
 
     /**
      * Sets the elements of this vector to the specified values.
@@ -294,26 +294,31 @@ public:
      * @param yy The new y coordinate.
      * @param zz The new z coordinate.
      */
-    void set(float xx, float yy, float zz);
+    inline void set(float xx, float yy, float zz);
 
     /**
      * Sets the elements of this vector from the values in the specified array.
      *
      * @param array An array containing the elements of the vector in the order x, y, z.
      */
-    void set(const float* array);
+    inline void set(const float* array);
 
     /**
      * Sets the elements of this vector to those in the specified vector.
      *
      * @param v The vector to copy.
      */
-    void set(const Vec3& v);
+    inline void set(const Vec3& v);
 
     /**
      * Sets this vector to the directional vector between the specified points.
      */
-    void set(const Vec3& p1, const Vec3& p2);
+    inline void set(const Vec3& p1, const Vec3& p2);
+
+    /**
+    * Sets the elements of this vector to zero.
+    */
+    inline void setZero();
 
     /**
      * Subtracts this vector and the specified vector as (this - v)
@@ -321,7 +326,7 @@ public:
      *
      * @param v The vector to subtract.
      */
-    void subtract(const Vec3& v);
+    inline void subtract(const Vec3& v);
 
     /**
      * Subtracts the specified vectors and stores the result in dst.
@@ -347,6 +352,12 @@ public:
     void smooth(const Vec3& target, float elapsedTime, float responseTime);
 
     /**
+     * Linear interpolation between two vectors A and B by alpha which
+     * is in the range [0,1]
+     */
+    inline Vec3 lerp(const Vec3& target, float alpha) const;
+
+    /**
      * Calculates the sum of this vector with the given vector.
      * 
      * Note: this does not modify this vector.
@@ -354,7 +365,7 @@ public:
      * @param v The vector to add.
      * @return The vector sum.
      */
-    inline const Vec3 operator+(const Vec3& v) const;
+    inline Vec3 operator+(const Vec3& v) const;
 
     /**
      * Adds the given vector to this vector.
@@ -372,7 +383,7 @@ public:
      * @param v The vector to subtract.
      * @return The vector difference.
      */
-    inline const Vec3 operator-(const Vec3& v) const;
+    inline Vec3 operator-(const Vec3& v) const;
 
     /**
      * Subtracts the given vector from this vector.
@@ -389,7 +400,7 @@ public:
      * 
      * @return The negation of this vector.
      */
-    inline const Vec3 operator-() const;
+    inline Vec3 operator-() const;
 
     /**
      * Calculates the scalar product of this vector with the given value.
@@ -399,7 +410,7 @@ public:
      * @param s The value to scale by.
      * @return The scaled vector.
      */
-    inline const Vec3 operator*(float s) const;
+    inline Vec3 operator*(float s) const;
 
     /**
      * Scales this vector by the given value.
@@ -417,16 +428,27 @@ public:
      * @param s the constant to divide this vector with
      * @return a smaller vector
      */
-    inline const Vec3 operator/(float s) const;
+    inline Vec3 operator/(float s) const;
 
-    /**
-     * Determines if this vector is less than the given vector.
-     * 
-     * @param v The vector to compare against.
-     * 
-     * @return True if this vector is less than the given vector, false otherwise.
+    /** Returns true if the vector's scalar components are all greater
+     that the ones of the vector it is compared against.
      */
-    inline bool operator<(const Vec3& v) const;
+    inline bool operator < (const Vec3& rhs) const
+    {
+        if (x < rhs.x && y < rhs.y && z < rhs.z)
+            return true;
+        return false;
+    }
+
+    /** Returns true if the vector's scalar components are all smaller
+     that the ones of the vector it is compared against.
+     */
+    inline bool operator >(const Vec3& rhs) const
+    {
+        if (x > rhs.x && y > rhs.y && z > rhs.z)
+            return true;
+        return false;
+    }
 
     /**
      * Determines if this vector is equal to the given vector.
@@ -465,12 +487,15 @@ public:
  * @param v The vector to scale.
  * @return The scaled vector.
  */
-inline const Vec3 operator*(float x, const Vec3& v);
+inline Vec3 operator*(float x, const Vec3& v);
 
 //typedef Vec3 Point3;
 
 NS_CC_MATH_END
-
-#include "Vec3.inl"
+/**
+ end of base group
+ @}
+ */
+#include "math/Vec3.inl"
 
 #endif // MATH_VEC3_H

@@ -1,6 +1,7 @@
 /****************************************************************************
  Copyright (c) 2012 cocos2d-x.org
  Copyright (c) 2010 Sangwoo Im
+ Copyright (c) 2017-2018 Xiamen Yaji Software Co., Ltd.
  
  http://www.cocos2d-x.org
  
@@ -30,7 +31,12 @@
 #include "2d/CCNode.h"
 #include "extensions/ExtensionExport.h"
 
+/**
+ * @addtogroup ui
+ * @{
+ */
 NS_CC_EXT_BEGIN
+
 
 /**
  * Abstract class for SWTableView cell node
@@ -56,5 +62,7 @@ private:
 };
 
 NS_CC_EXT_END
+// end of ui group
+/// @}
 
 #endif /* __CCTABLEVIEWCELL_H__ */

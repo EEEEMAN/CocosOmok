@@ -4,6 +4,7 @@
  *
  * Copyright (c) 2012 Pierre-David Bélanger
  * Copyright (c) 2012 cocos2d-x.org
+ * Copyright (c) 2017-2018 Xiamen Yaji Software Co., Ltd.
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -34,20 +35,57 @@
 
 NS_CC_BEGIN
 
+/**
+ * @addtogroup _2d
+ * @{
+ */
+
+/**
+@brief Clipping Rectangle Node.
+@details A node that clipped with specified rectangle.
+ The region of ClippingRectangleNode doesn't support any transform except scale.
+@js NA
+*/
 class CC_DLL ClippingRectangleNode : public Node
 {    
 public:
+    /**
+    @brief Create node with specified clipping region.
+    @param clippingRegion Specify the clipping rectangle.
+    @return If the creation success, return a pointer of ClippingRectangleNode; otherwise return nil.
+    */
     static ClippingRectangleNode* create(const Rect& clippingRegion);
+    /**
+    @brief Create a clipping rectangle node.
+    @return If the creation success, return a pointer of ClippingRectangleNode; otherwise return nil.
+    */
     static ClippingRectangleNode* create();
     
+    /**
+    @brief Get the clipping rectangle.
+    @return The clipping rectangle.
+    */
     const Rect& getClippingRegion() const {
         return _clippingRegion;
     }
+    /**
+    @brief Set the clipping rectangle.
+    @param clippingRegion Specify the clipping rectangle.
+    */
     void setClippingRegion(const Rect& clippingRegion);
     
-    const bool isClippingEnabled() const {
+    /**
+    @brief Get whether the clipping is enabled or not.
+    @return Whether the clipping is enabled or not. Default is true.
+    */
+    bool isClippingEnabled() const {
         return _clippingEnabled;
     }
+
+    /**
+    @brief Enable/Disable the clipping.
+    @param enabled Pass true to enable clipping. Pass false to disable clipping.
+    */
     void setClippingEnabled(bool enabled) {
         _clippingEnabled = enabled;
     }
@@ -70,6 +108,9 @@ protected:
     CustomCommand _beforeVisitCmdScissor;
     CustomCommand _afterVisitCmdScissor;
 };
+
+// end of _2d group
+/// @}
 
 NS_CC_END
 

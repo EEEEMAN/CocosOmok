@@ -1,5 +1,6 @@
 /****************************************************************************
- Copyright (c) 2013-2014 Chukong Technologies Inc.
+ Copyright (c) 2013-2016 Chukong Technologies Inc.
+ Copyright (c) 2017-2018 Xiamen Yaji Software Co., Ltd.
  
  http://www.cocos2d-x.org
  
@@ -23,6 +24,7 @@
  ****************************************************************************/
 
 #include "base/CCEventListener.h"
+#include "base/CCConsole.h"
 
 NS_CC_BEGIN
 
@@ -40,7 +42,7 @@ bool EventListener::init(Type t, const ListenerID& listenerID, const std::functi
     _type = t;
     _listenerID = listenerID;
     _isRegistered = false;
-    _paused = true;
+    _paused = false;
     _isEnabled = true;
     
     return true;

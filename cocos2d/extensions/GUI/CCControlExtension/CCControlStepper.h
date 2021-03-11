@@ -5,6 +5,8 @@
  * Copyright 2012 Yannick Loriot. All rights reserved.
  * http://yannickloriot.com
  * 
+ * Copyright (c) 2017-2018 Xiamen Yaji Software Co., Ltd.
+ * 
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
  * in the Software without restriction, including without limitation the rights
@@ -54,6 +56,7 @@ public:
     static ControlStepper* create(Sprite *minusSprite, Sprite *plusSprite);
     /**
      * @js ctor
+     * @lua new
      */
     ControlStepper();
     /**
@@ -79,7 +82,7 @@ public:
     virtual bool onTouchBegan(Touch *pTouch, Event *pEvent) override;
     virtual void onTouchMoved(Touch *pTouch, Event *pEvent) override;
     virtual void onTouchEnded(Touch *pTouch, Event *pEvent) override;
-    void update(float dt);
+    void update(float dt) override;
 
     /** Update the layout of the stepper with the given touch location. */
     void updateLayoutUsingTouchLocation(Vec2 location);

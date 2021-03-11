@@ -1,7 +1,8 @@
 /****************************************************************************
 Copyright (c) 2011      Erawppa
 Copyright (c) 2010-2012 cocos2d-x.org
-Copyright (c) 2013-2014 Chukong Technologies Inc.
+Copyright (c) 2013-2016 Chukong Technologies Inc.
+Copyright (c) 2017-2018 Xiamen Yaji Software Co., Ltd.
 
 http://www.cocos2d-x.org
 
@@ -26,6 +27,7 @@ THE SOFTWARE.
 
 #ifndef __CCNOTIFICATIONCENTER_H__
 #define __CCNOTIFICATIONCENTER_H__
+/// @cond DO_NOT_SHOW
 
 #include "base/CCRef.h"
 #include "base/ccTypes.h"
@@ -34,6 +36,11 @@ NS_CC_BEGIN
 
 class __Array;
 class ScriptHandlerMgr;
+
+/**
+ * @cond DO_NOT_SHOW
+ * @{
+ */
 
 class CC_DLL __NotificationCenter : public Ref
 {
@@ -110,7 +117,7 @@ public:
      *  @note Only supports Lua Binding now.
      *  @return The script handle.
      */
-    inline int getScriptHandler() const { return _scriptHandler; };
+    int getScriptHandler() const { return _scriptHandler; }
     
     /** @brief Gets observer script handler.
      *  @param name The name of this notification.
@@ -197,6 +204,11 @@ private:
     int _handler;
 };
 
+/**
+ * @}
+ */
+
 NS_CC_END
 
+/// @endcond
 #endif//__CCNOTIFICATIONCENTER_H__

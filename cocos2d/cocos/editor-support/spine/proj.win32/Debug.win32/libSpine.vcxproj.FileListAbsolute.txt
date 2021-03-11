@@ -1,0 +1,2 @@
+C:\Users\skrnf\Desktop\cocosOmok\proj.win32\Debug.win32\libSpine.pdb
+C:\Users\skrnf\Desktop\cocosOmok\cocos2d\cocos\editor-support\spine\proj.win32\Debug.win32\libSpine.pdb

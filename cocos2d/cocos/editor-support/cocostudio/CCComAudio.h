@@ -59,7 +59,7 @@ public:
      * @lua NA
      */
     virtual void onExit() override;
-    virtual bool isEnabled() const override;
+    virtual bool isEnabled() const;
     virtual void setEnabled(bool b) override;
     virtual bool serialize(void* r) override;
 

@@ -18,7 +18,7 @@ bool OmokTitleScene::init()
 		return false;
 	}
 
-	Size winSize = Director::getInstance()->getVisibleSize();
+	const Size winSize = Director::getInstance()->getVisibleSize();
 
 	//admob
 	if (!AdmobHelper::isAdShowing){
@@ -31,6 +31,7 @@ bool OmokTitleScene::init()
 	GameManager::getInstance().sound->playBackgroundMusic(BGM_TITLE, true);
 
 	auto title = CSLoader::createNode("Title.csb");
+	CC_ASSERT(title != nullptr);
 	title->setScaleX(winSize.width / title->getContentSize().width);
 	title->setScaleY(winSize.height / title->getContentSize().height);
 	title->setAnchorPoint(Vec2(0.5, 0.5));

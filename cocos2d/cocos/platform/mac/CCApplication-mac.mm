@@ -1,6 +1,7 @@
 /****************************************************************************
 Copyright (c) 2010-2012 cocos2d-x.org
-Copyright (c) 2013-2014 Chukong Technologies Inc.
+Copyright (c) 2013-2016 Chukong Technologies Inc.
+Copyright (c) 2017-2018 Xiamen Yaji Software Co., Ltd.
 
 http://www.cocos2d-x.org
 
@@ -29,10 +30,11 @@ THE SOFTWARE.
 #import <Cocoa/Cocoa.h>
 #include <algorithm>
 
-#import "platform/CCApplication.h"
+#include "platform/CCApplication.h"
 #include "platform/CCFileUtils.h"
 #include "math/CCGeometry.h"
 #include "base/CCDirector.h"
+#include "base/ccUtils.h"
 
 NS_CC_BEGIN
 
@@ -42,11 +44,11 @@ static long getCurrentMillSecond()
     struct timeval stCurrentTime;
     
     gettimeofday(&stCurrentTime,NULL);
-    lLastTime = stCurrentTime.tv_sec*1000+stCurrentTime.tv_usec*0.001; //millseconds
+    lLastTime = stCurrentTime.tv_sec*1000+stCurrentTime.tv_usec*0.001; // milliseconds
     return lLastTime;
 }
 
-Application* Application::sm_pSharedApplication = 0;
+Application* Application::sm_pSharedApplication = nullptr;
 
 Application::Application()
 : _animationInterval(1.0f/60.0f*1000.0f)
@@ -77,11 +79,21 @@ int Application::run()
     
     // Retain glview to avoid glview being released in the while loop
     glview->retain();
-    
+
+    unsigned int ctx_updated_count = 0;
+
     while (!glview->windowShouldClose())
     {
         lastTime = getCurrentMillSecond();
-        
+
+        // hack to fix issue #19080, black screen on macOS 10.14
+        // stevetranby: look into doing this outside loop to get rid of condition test per frame
+        if(ctx_updated_count < 2) {
+            ctx_updated_count++;
+            NSOpenGLContext* ctx = (NSOpenGLContext*)glview->getNSGLContext();
+            [ctx update];
+        }
+
         director->mainLoop();
         glview->pollEvents();
 
@@ -108,7 +120,7 @@ int Application::run()
     return 0;
 }
 
-void Application::setAnimationInterval(double interval)
+void Application::setAnimationInterval(float interval)
 {
     _animationInterval = interval*1000.0f;
 }
@@ -116,6 +128,14 @@ void Application::setAnimationInterval(double interval)
 Application::Platform Application::getTargetPlatform()
 {
     return Platform::OS_MAC;
+}
+
+std::string Application::getVersion() {
+    NSString* version = [[[NSBundle mainBundle] infoDictionary] objectForKey:@"CFBundleShortVersionString"];
+    if (version) {
+        return [version UTF8String];
+    }
+    return "";
 }
 
 /////////////////////////////////////////////////////////////////////////////////////////////////
@@ -155,62 +175,12 @@ LanguageType Application::getCurrentLanguage()
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
     NSArray *languages = [defaults objectForKey:@"AppleLanguages"];
     NSString *currentLanguage = [languages objectAtIndex:0];
-
+    
     // get the current language code.(such as English is "en", Chinese is "zh" and so on)
     NSDictionary* temp = [NSLocale componentsFromLocaleIdentifier:currentLanguage];
     NSString * languageCode = [temp objectForKey:NSLocaleLanguageCode];
-
-    LanguageType ret = LanguageType::ENGLISH;
-    if ([languageCode isEqualToString:@"zh"])
-    {
-        ret = LanguageType::CHINESE;
-    }
-    else if ([languageCode isEqualToString:@"en"])
-    {
-        ret = LanguageType::ENGLISH;
-    }
-    else if ([languageCode isEqualToString:@"fr"]){
-        ret = LanguageType::FRENCH;
-    }
-    else if ([languageCode isEqualToString:@"it"]){
-        ret = LanguageType::ITALIAN;
-    }
-    else if ([languageCode isEqualToString:@"de"]){
-        ret = LanguageType::GERMAN;
-    }
-    else if ([languageCode isEqualToString:@"es"]){
-        ret = LanguageType::SPANISH;
-    }
-    else if ([languageCode isEqualToString:@"nl"]){
-        ret = LanguageType::DUTCH;
-    }
-    else if ([languageCode isEqualToString:@"ru"]){
-        ret = LanguageType::RUSSIAN;
-    }
-    else if ([languageCode isEqualToString:@"ko"]){
-        ret = LanguageType::KOREAN;
-    }
-    else if ([languageCode isEqualToString:@"ja"]){
-        ret = LanguageType::JAPANESE;
-    }
-    else if ([languageCode isEqualToString:@"hu"]){
-        ret = LanguageType::HUNGARIAN;
-    }
-    else if ([languageCode isEqualToString:@"pt"])
-    {
-        ret = LanguageType::PORTUGUESE;
-    }
-    else if ([languageCode isEqualToString:@"ar"])
-    {
-        ret = LanguageType::ARABIC;
-    }
-    else if ([languageCode isEqualToString:@"nb"]){
-        ret = LanguageType::NORWEGIAN;
-    }
-    else if ([languageCode isEqualToString:@"pl"]){
-        ret = LanguageType::POLISH;
-    }
-    return ret;
+    
+    return utils::getLanguageTypeByISO2([languageCode UTF8String]);
 }
 
 bool Application::openURL(const std::string &url)

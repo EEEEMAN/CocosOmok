@@ -1,6 +1,5 @@
 /****************************************************************************
- Copyright (c) 2013      Zynga Inc.
- Copyright (c) 2013-2014 Chukong Technologies Inc.
+ Copyright (c) 2017-2018 Xiamen Yaji Software Co., Ltd.
  
  http://www.cocos2d-x.org
  
@@ -22,85 +21,4 @@
  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  THE SOFTWARE.
  ****************************************************************************/
-
-#include "2d/CCFont.h"
-#include "base/ccUTF8.h"
-
-NS_CC_BEGIN
-
-const char * Font::_glyphASCII = "\"!#$%&'()*+,-./0123456789:;<=>?@ABCDEFGHIJKLMNOPQRSTUVWXYZ[\\]^_`abcdefghijklmnopqrstuvwxyz{|}~¡¢£¤¥¦§¨©ª«¬­®¯°±²³´µ¶·¸¹º»¼½¾¿ÀÁÂÃÄÅÆÇÈÉÊËÌÍÎÏÐÑÒÓÔÕÖ×ØÙÚÛÜÝÞßàáâãäåæçèéêëìíîïðñòóôõö÷øùúûüýþ ";
-
-const char * Font::_glyphNEHE =  "!\"#$%&'()*+,-./0123456789:;<=>?@ABCDEFGHIJKLMNOPQRSTUVWXYZ[\\]^_`abcdefghijklmnopqrstuvwxyz{|}~ ";
-
-
-Font::Font() : 
-_usedGlyphs(GlyphCollection::ASCII)
-, _customGlyphs(nullptr)
-{
-}
-
-const char * Font::getGlyphCollection(GlyphCollection glyphs) const
-{
-    switch (glyphs)
-    {
-        case GlyphCollection::NEHE:
-            return _glyphNEHE;
-            break;
-            
-        case GlyphCollection::ASCII:
-            return _glyphASCII;
-            break;
-            
-        default:
-            return 0;
-            break;
-    }
-}
-
-void Font::setCurrentGlyphCollection(GlyphCollection glyphs, const char *customGlyphs)
-{
-    if (_customGlyphs)
-        delete [] _customGlyphs;
-    
-    switch (glyphs)
-    {
-        case GlyphCollection::NEHE:
-            _customGlyphs = 0;
-            break;
-            
-        case GlyphCollection::ASCII:
-            _customGlyphs = 0;
-            break;
-            
-        default:
-            if (customGlyphs)
-            {
-                size_t lenght = strlen(customGlyphs);
-                _customGlyphs = new char [lenght + 2];
-                memcpy(_customGlyphs, customGlyphs, lenght);
-
-                _customGlyphs[lenght]   = 0;
-                _customGlyphs[lenght+1] = 0;
-            }           
-            
-            break;
-    }
-    _usedGlyphs = glyphs;
-}
-
-const char * Font::getCurrentGlyphCollection() const
-{
-    if (_customGlyphs)
-    {
-        return _customGlyphs;
-    }
-    else
-    {
-        return getGlyphCollection(_usedGlyphs);
-    }
-}
-
-
-NS_CC_END
-
 

@@ -2,7 +2,8 @@
 Copyright (c) 2008-2010 Ricardo Quesada
 Copyright (c) 2010-2012 cocos2d-x.org
 Copyright (c) 2011      Zynga Inc.
-Copyright (c) 2013-2014 Chukong Technologies Inc.
+Copyright (c) 2013-2016 Chukong Technologies Inc.
+Copyright (c) 2017-2018 Xiamen Yaji Software Co., Ltd.
 
 http://www.cocos2d-x.org
 
@@ -32,12 +33,9 @@ THE SOFTWARE.
 
 NS_CC_BEGIN
 
-struct sImageTGA;
+/// @cond DO_NOT_SHOW
 
-/**
- * @addtogroup tilemap_parallax_nodes
- * @{
- */
+struct sImageTGA;
 
 /** @brief TileMapAtlas is a subclass of AtlasNode.
 
@@ -53,6 +51,7 @@ IMPORTANT:
 This class is deprecated. It is maintained for compatibility reasons only.
 You SHOULD not use this class.
 Instead, use the newer TMX file format: TMXTiledMap
+@js NA
 */
 class CC_DLL TileMapAtlas : public AtlasNode 
 {
@@ -75,10 +74,15 @@ public:
     The file will be loaded using the TextureMgr.
     */
     bool initWithTileFile(const std::string& tile, const std::string& mapFile, int tileWidth, int tileHeight);
-    /** returns a tile from position x,y.
-    For the moment only channel R is used
-    */
+    /**
+     * Returns a tile from position x,y.
+     *For the moment only channel R is used
+     */
     Color3B getTileAt(const Vec2& position) const;
+    /**
+     * Returns a tile from position x,y.
+     *For the moment only channel R is used
+     */
     CC_DEPRECATED_ATTRIBUTE Color3B tileAt(const Vec2& position) const { return getTileAt(position); };
     /** sets a tile at position x,y.
     For the moment only channel R is used
@@ -87,8 +91,17 @@ public:
     /** dealloc the map from memory */
     void releaseMap();
     
-    inline struct sImageTGA* getTGAInfo() const { return _TGAInfo; };
-    inline void setTGAInfo(struct sImageTGA* TGAInfo) { _TGAInfo = TGAInfo; };
+    /**
+     * Query TGA image info.
+     *@return The TGA image info.
+     */
+    struct sImageTGA* getTGAInfo() const { return _TGAInfo; }
+
+    /**
+     * Set the TGA image info for TileMapAtlas
+     *@param TGAInfo The TGA info in sImageTGA.
+     */
+    void setTGAInfo(struct sImageTGA* TGAInfo) { _TGAInfo = TGAInfo; }
 
 protected:
     void loadTGAfile(const std::string& file);
@@ -105,8 +118,7 @@ protected:
     struct sImageTGA* _TGAInfo;
 };
 
-// end of tilemap_parallax_nodes group
-/// @}
+/// @endcond
 
 NS_CC_END
 

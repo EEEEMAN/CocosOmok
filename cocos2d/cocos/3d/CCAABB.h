@@ -1,5 +1,6 @@
 /****************************************************************************
- Copyright (c) 2014 Chukong Technologies Inc.
+ Copyright (c) 2014-2016 Chukong Technologies Inc.
+ Copyright (c) 2017-2018 Xiamen Yaji Software Co., Ltd.
  
  http://www.cocos2d-x.org
  
@@ -30,24 +31,29 @@
 
 NS_CC_BEGIN
 
+/**
+ * @addtogroup _3d
+ * @{
+ */
+
+/**
+ * Axis Aligned Bounding Box (AABB), usually calculate some rough but fast collision detection.
+ */
 class CC_DLL AABB
 {
 
 public:
     /**
      * Constructor.
+     * @lua new
      */
     AABB();
     
     /**
      * Constructor.
+     * @lua new
      */
     AABB(const Vec3& min, const Vec3& max);
-    
-    /**
-     * Constructor.
-     */
-    AABB(const AABB& box);
     
     /**
      * Gets the center point of the bounding box.
@@ -90,10 +96,13 @@ public:
     void set(const Vec3& min, const Vec3& max);
     
     /**
-     * reset min and max value.
+     * Reset min and max value.If you invoke this method, isEmpty() shall return true.
      */
     void reset();
     
+    /**
+     * check the AABB object is empty(reset).
+     */
     bool isEmpty() const;
 
     /**
@@ -110,6 +119,9 @@ public:
     Vec3 _min;
     Vec3 _max;
 };
+
+// end of 3d group
+/// @}
 
 NS_CC_END
 

@@ -1,7 +1,8 @@
 /****************************************************************************
 Copyright (c) 2010      Stuart Carnie
 Copyright (c) 2010-2012 cocos2d-x.org
-Copyright (c) 2013-2014 Chukong Technologies Inc.
+Copyright (c) 2013-2016 Chukong Technologies Inc.
+Copyright (c) 2017-2018 Xiamen Yaji Software Co., Ltd.
 
 http://www.cocos2d-x.org
 
@@ -23,8 +24,10 @@ LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 THE SOFTWARE.
 ****************************************************************************/
+
 #ifndef __SUPPORT_CCPROFILING_H__
 #define __SUPPORT_CCPROFILING_H__
+/// @cond DO_NOT_SHOW
 
 #include <string>
 #include <chrono>
@@ -125,7 +128,7 @@ public:
      * @js NA
      * @lua NA
      */
-    inline const std::chrono::high_resolution_clock::time_point& getStartTime(void) { return _startTime; };
+    const std::chrono::high_resolution_clock::time_point& getStartTime() { return _startTime; }
 
     /** resets the timer properties
      * @js NA
@@ -161,4 +164,5 @@ extern bool kProfilerCategoryParticles;
 
 NS_CC_END
 
+/// @endcond
 #endif // __SUPPORT_CCPROFILING_H__

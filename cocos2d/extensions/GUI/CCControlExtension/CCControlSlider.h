@@ -5,6 +5,8 @@
  * Copyright 2011 Yannick Loriot. All rights reserved.
  * http://yannickloriot.com
  * 
+ * Copyright (c) 2017-2018 Xiamen Yaji Software Co., Ltd.
+ * 
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
  * in the Software without restriction, including without limitation the rights
@@ -77,6 +79,7 @@ public:
             Sprite* selectedThumbSprite);
     /**
      * @js ctor
+     * @lua new
      */
     ControlSlider();
     /**
@@ -107,11 +110,11 @@ public:
     virtual bool initWithSprites(Sprite * backgroundSprite, Sprite* progressSprite, Sprite* thumbSprite,
             Sprite* selectedThumbSprite);
 
-    virtual void needsLayout();
+    virtual void needsLayout() override;
 
     virtual void setMaximumValue(float val);
-    virtual void setEnabled(bool enabled);
-    virtual bool isTouchInside(Touch * touch);
+    virtual void setEnabled(bool enabled) override;
+    virtual bool isTouchInside(Touch * touch) override;
     Vec2 locationFromTouch(Touch* touch);
     virtual void setValue(float val);
     virtual void setMinimumValue(float val);
@@ -121,14 +124,14 @@ protected:
     void sliderMoved(Vec2 location);
     void sliderEnded(Vec2 location);
 
-    virtual bool onTouchBegan(Touch* touch, Event* pEvent);
-    virtual void onTouchMoved(Touch *pTouch, Event *pEvent);
-    virtual void onTouchEnded(Touch *pTouch, Event *pEvent);
+    virtual bool onTouchBegan(Touch* touch, Event* pEvent) override;
+    virtual void onTouchMoved(Touch *pTouch, Event *pEvent) override;
+    virtual void onTouchEnded(Touch *pTouch, Event *pEvent) override;
 
     /** Returns the value for the given location. */
     float valueForLocation(Vec2 location);
 
-    //maunally put in the setters
+    //manually put in the setters
     /** Contains the receiver's current value. */
     CC_SYNTHESIZE_READONLY(float, _value, Value);
 

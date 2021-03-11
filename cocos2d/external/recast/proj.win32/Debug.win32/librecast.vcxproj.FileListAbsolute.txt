@@ -1,0 +1,2 @@
+C:\Users\skrnf\Desktop\cocosOmok\proj.win32\Debug.win32\librecast.pdb
+C:\Users\skrnf\Desktop\cocosOmok\cocos2d\external\recast\proj.win32\Debug.win32\librecast.pdb

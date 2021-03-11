@@ -1,5 +1,6 @@
 /****************************************************************************
-Copyright 2014 Chukong Technologies Inc.
+Copyright (c) 2014-2016 Chukong Technologies Inc.
+Copyright (c) 2017-2018 Xiamen Yaji Software Co., Ltd.
  
 http://www.cocos2d-x.org
  
@@ -32,25 +33,34 @@ THE SOFTWARE.
 #include "math/Vec3.h"
 #include "math/Vec4.h"
 
+/**
+ * @addtogroup renderer
+ * @{
+ */
+
 NS_CC_BEGIN
 
 class GLProgram;
 
 class GLProgramState;
 
-//
-//
-// GLProgramStateCache
-//
-//
+/**
+ Some GLprogram state could be shared. GLProgramStateCache is used to cache this, and will reuse the
+ old GLProgramState, which will accelerate the creation of game objects such as sprites, particles etc.
+ */
 class CC_DLL GLProgramStateCache
 {
 public:
+    /**Get the GLProgramStateCache singleton instance.*/
     static GLProgramStateCache* getInstance();
+    /**Destroy the GLProgramStateCache singleton.*/
     static void destroyInstance();
     
+    /**Get the shared GLProgramState by the owner GLProgram.*/
     GLProgramState* getGLProgramState(GLProgram* program);
+    /**Remove all the cached GLProgramState.*/
 	void removeAllGLProgramState();
+    /**Remove unused GLProgramState.*/
     void removeUnusedGLProgramState();
 
 protected:
@@ -62,5 +72,8 @@ protected:
 };
 
 NS_CC_END
-
+/**
+ end of support group
+ @}
+ */
 #endif /* __CCGLPROGRAMSTATECACHE_H__ */
