@@ -1,4 +1,4 @@
-#include "CpuEnemy.h"
+ï»¿#include "CpuEnemy.h"
 
 CpuEnemy::CpuEnemy(){
 	characterID = CharacterID::CHAR_OJING;
@@ -15,7 +15,7 @@ int CpuEnemy::alpha_beta(GNode* state, int alpha, int beta, int length) {
 		|| GameManager::getInstance().getSceneState() != SCENE_OMOK) {
 		return utility(state);
 	}
-	if (!state->isPlayer()) { //maxÀÏ °æ¿ì
+	if (!state->isPlayer()) { //maxì¼ ê²½ìš°
 		for (int i = 0; i < state->actionList.size(); i++){
 			GAction* act = &state->actionList.at(i);
 			if (!state->isPlayer() && state->result(*act)->isSsangsam())
@@ -33,7 +33,7 @@ int CpuEnemy::alpha_beta(GNode* state, int alpha, int beta, int length) {
 		}
 		return alpha;
 	}
-	else { //minÀÏ °æ¿ì
+	else { //minì¼ ê²½ìš°
 		for (int i = 0; i < state->actionList.size(); i++){
 			GAction* act = &state->actionList.at(i);
 			if (!state->isPlayer() && state->result(*act)->isSsangsam())
@@ -53,8 +53,8 @@ int CpuEnemy::alpha_beta(GNode* state, int alpha, int beta, int length) {
 }
 
 GAction CpuEnemy::getBestAction(GNode* state) {
-	int alpha = -INF, beta = INF; //¾ËÆÄº£Å¸°ª ÃÊ±âÈ­
-	GAction ans;//¸®ÅÏÇÒ °ª
+	int alpha = -INF, beta = INF; //ì•ŒíŒŒë² íƒ€ê°’ ì´ˆê¸°í™”
+	GAction ans;//ë¦¬í„´í•  ê°’
 
 	GAction da = state->getAction();
 
